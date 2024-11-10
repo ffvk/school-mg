@@ -225,6 +225,11 @@ export class ResourceConstant {
         role: Roles.ROOT.role,
         restriction: '',
       },
+
+      STUDENT: {
+        role: Roles.STUDENT.role,
+        restriction: '',
+      },
     },
   };
 
@@ -246,14 +251,6 @@ export class ResourceConstant {
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
-        restriction: '',
-      },
-      ROOT: {
-        role: Roles.ROOT.role,
-        restriction: '',
-      },
-      STUDENT: {
-        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
@@ -317,10 +314,6 @@ export class ResourceConstant {
       },
       ROOT: {
         role: Roles.ROOT.role,
-        restriction: '',
-      },
-      STUDENT: {
-        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
@@ -486,6 +479,115 @@ export class ResourceConstant {
 
       ROOT: {
         role: Roles.ROOT.role,
+        restriction: '',
+      },
+    },
+  };
+
+  //*****************************************************************//
+  //************************* HOMEWORKS ***************************//
+  //*****************************************************************//
+
+  /**
+   * @description Resource that captures the request to get (*) homeworks
+   * @constant
+   * @type {Object} GET_HOMEWORKS
+   * @default
+   */
+  public static readonly GET_HOMEWORKS: IResource = {
+    action: 'GET_HOMEWORKS',
+    resource: 'HOMEWORKS',
+    verb: 'GET',
+    endpoint: '/homeworks',
+    signWith: 'TOKEN',
+    type: 'READ',
+    name: 'List All Homeworks',
+    description: 'Allows retrieving the list of all homeworks',
+    roles: {
+      ADMIN: {
+        role: Roles.ADMIN.role,
+        restriction: '',
+      },
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
+        restriction: '',
+      },
+    },
+  };
+
+  /**
+   * @description Resource that captures the request to add a new homework by
+   * creating a new entry in db
+   * @constant
+   * @type {Object} CREATE_HOMEWORKS
+   * @default
+   */
+  public static readonly CREATE_HOMEWORKS: IResource = {
+    action: 'CREATE_HOMEWORKS',
+    resource: 'HOMEWORKS',
+    verb: 'POST',
+    endpoint: '/homeworks',
+    signWith: 'TOKEN',
+    type: 'WRITE',
+    name: 'Add a new Homework',
+    description: 'Allows to add a new homework',
+    roles: {
+      ADMIN: {
+        role: Roles.ADMIN.role,
+        restriction: '',
+      },
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+    },
+  };
+
+  /**
+   * @description Resource that captures the request to update a homework
+   * @constant
+   * @type {Object} UPDATE_HOMEWORKS
+   * @default
+   */
+  public static readonly UPDATE_HOMEWORKS: IResource = {
+    action: 'UPDATE_HOMEWORKS',
+    resource: 'HOMEWORKS',
+    verb: 'PUT',
+    endpoint: '/homeworks',
+    signWith: 'TOKEN',
+    type: 'WRITE',
+    name: 'Update an existing Homework',
+    description: 'Allows to update an existing homework',
+    roles: {
+      ADMIN: {
+        role: Roles.ADMIN.role,
+        restriction: '',
+      },
+    },
+  };
+
+  /**
+   * @description Resource that captures the request to delete a homework
+   * @constant
+   * @type {Object} DELETE_HOMEWORKS
+   * @default
+   */
+  public static readonly DELETE_HOMEWORKS: IResource = {
+    action: 'DELETE_HOMEWORKS',
+    resource: 'HOMEWORKS',
+    verb: 'DELETE',
+    endpoint: '/homeworks',
+    signWith: 'TOKEN',
+    type: 'WRITE',
+    name: 'Delete an existing Homework',
+    description: 'Allows to delete an existing homework',
+    roles: {
+      ADMIN: {
+        role: Roles.ADMIN.role,
         restriction: '',
       },
     },
