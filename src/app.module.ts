@@ -19,6 +19,9 @@ import { TokenGuard } from './shared/guards/token/token.guard';
 import { SharedModule } from './shared/shared.module';
 import { SubjectsModule } from './app-modules/subjects/subjects.module';
 import { SclassesModule } from './app-modules/sclasses/sclasses.module';
+import { HomeworksModule } from './app-modules/homeworks/homeworks.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 @Module({
   imports: [
@@ -36,6 +39,29 @@ import { SclassesModule } from './app-modules/sclasses/sclasses.module';
           configService.get<string>('db.port') +
           '/' +
           configService.get<string>('db.name'),
+      }),
+      inject: [ConfigService],
+    }),
+
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        transport:
+          'smtps://' +
+          configService.get<string>('app.email.user') +
+          ':' +
+          configService.get<string>('app.email.pass') +
+          '@smtp.gmail.com',
+        defaults: {
+          from: configService.get<string>('app.email.from'),
+        },
+        template: {
+          dir: __dirname + '/templates',
+          adapter: new HandlebarsAdapter(),
+          options: {
+            strict: true,
+          },
+        },
       }),
       inject: [ConfigService],
     }),
