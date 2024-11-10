@@ -17,6 +17,7 @@ import { HttpExceptionFilter } from './shared/filters/http-exception/http-except
 import { PermissionGuard } from './shared/guards/permission/permission.guard';
 import { TokenGuard } from './shared/guards/token/token.guard';
 import { SharedModule } from './shared/shared.module';
+import { SubjectsModule } from './app-modules/subjects/subjects.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { SharedModule } from './shared/shared.module';
     SeederModule,
     ProductsModule,
     OrdersModule,
+    SubjectsModule,
   ],
   controllers: [AppController],
   providers: [
