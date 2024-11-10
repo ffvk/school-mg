@@ -18,6 +18,7 @@ import { PermissionGuard } from './shared/guards/permission/permission.guard';
 import { TokenGuard } from './shared/guards/token/token.guard';
 import { SharedModule } from './shared/shared.module';
 import { SubjectsModule } from './app-modules/subjects/subjects.module';
+import { SclassesModule } from './app-modules/sclasses/sclasses.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { SubjectsModule } from './app-modules/subjects/subjects.module';
     ProductsModule,
     OrdersModule,
     SubjectsModule,
+    SclassesModule,
   ],
   controllers: [AppController],
   providers: [
