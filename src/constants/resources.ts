@@ -593,5 +593,69 @@ export class ResourceConstant {
     },
   };
 
+  /**
+   * @description Resource that captures the request to add a new homework file by
+   * creating a new entry in db
+   * @constant
+   * @type {Object} UPLOAD_HOMEWORK_FILE
+   * @default
+   */
+  public static readonly UPLOAD_HOMEWORK_FILE: IResource = {
+    action: 'UPLOAD_HOMEWORK_FILE',
+    resource: 'HOMEWORKS',
+    verb: 'POST',
+    endpoint: '/homeworks/file',
+    signWith: 'TOKEN',
+    type: 'WRITE',
+    name: 'Upload homework file',
+    description: 'Upload homework file',
+    roles: {
+      ADMIN: {
+        role: Roles.ADMIN.role,
+        restriction: '',
+      },
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
+        restriction: '',
+      },
+    },
+  };
+
+  /**
+   * @description Resource that captures the request to add a new homework file by
+   * creating a new entry in db
+   * @constant
+   * @type {Object} DELETE_HOMEWORK_FILE
+   * @default
+   */
+  public static readonly DELETE_HOMEWORK_FILE: IResource = {
+    action: 'DELETE_HOMEWORK_FILE',
+    resource: 'HOMEWORKS',
+    verb: 'DELETE',
+    endpoint: '/homeworks/file',
+    signWith: 'TOKEN',
+    type: 'WRITE',
+    name: 'Delete homework file',
+    description: 'Delete homework file',
+    roles: {
+      ADMIN: {
+        role: Roles.ADMIN.role,
+        restriction: '',
+      },
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
+        restriction: '',
+      },
+    },
+  };
+
   private constructor() {}
 }

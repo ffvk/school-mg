@@ -18,7 +18,7 @@ export class GetHomeworkDTO {
 
   @IsMongoId()
   @IsOptional()
-  creatorId: string;
+  tutorId: string;
 
   @IsMongoId()
   @IsOptional()

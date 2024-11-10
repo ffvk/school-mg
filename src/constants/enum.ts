@@ -5,5 +5,6 @@ export enum PermissionRestrictionEnum {
 
 export enum UserRoleEnum {
   ADMIN = 'ADMIN',
-  CUSTOMER = 'CUSTOMER',
+  ROOT = 'ROOT',
+  STUDENT = 'STUDENT',
 }

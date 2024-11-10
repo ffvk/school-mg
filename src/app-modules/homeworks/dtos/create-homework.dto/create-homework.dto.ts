@@ -12,7 +12,7 @@ export class CreateHomeworkDTO {
   //   file?: File;
 
   @IsMongoId()
-  creatorId: string;
+  tutorId: string;
 
   @IsMongoId()
   sclassId: string;

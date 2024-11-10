@@ -1,4 +1,3 @@
-import { MailerService } from '@nestjs-modules/mailer';
 import {
   BadRequestException,
   Body,
@@ -11,7 +10,6 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { ErrorConstant } from 'src/constants/error';
 import { RestrictHomeworksGuard } from 'src/shared/guards/restrictors/restrict-homeworks/restrict-homeworks.guard';
@@ -19,8 +17,6 @@ import { HomeworkIdGuard } from 'src/shared/guards/validators/homework-id/homewo
 import { SubjectIdGuard } from 'src/shared/guards/validators/subject-id/subject-id.guard';
 import { S3Service } from 'src/shared/helpers/s3/s3.service';
 import { ParseMongoIdPipe } from 'src/shared/pipes/parse-mongo-id/parse-mongo-id.pipe';
-import { SubjectsService } from '../subjects/subjects.service';
-import { UsersService } from '../users/users.service';
 import { CreateHomeworkDTO } from './dtos/create-homework.dto/create-homework.dto';
 import { DeleteHomeworkDTO } from './dtos/delete-homework.dto/delete-homework.dto';
 import { GetHomeworkDTO } from './dtos/get-homework.dto/get-homework.dto';
@@ -30,11 +26,7 @@ import { HomeworksService } from './homeworks.service';
 export class HomeworksController {
   constructor(
     private readonly homeworksService: HomeworksService,
-    private readonly subjectsService: SubjectsService,
     private readonly s3Service: S3Service,
-    private readonly usersService: UsersService,
-    private readonly mailerService: MailerService,
-    private readonly configService: ConfigService,
   ) {}
 
   @Get()
@@ -46,43 +38,7 @@ export class HomeworksController {
   @Post()
   @UseGuards(SubjectIdGuard)
   async createHomework(@Body() createHomeworkDTO: CreateHomeworkDTO) {
-    const createdHomework = await this.homeworksService.create(
-      createHomeworkDTO,
-    );
-
-    await this.subjectsService.update({
-      subjectId: createHomeworkDTO.subjectId,
-      status: 'IN_REVIEW',
-    });
-
-    let users = [];
-
-    for (let user of users) {
-      this.mailerService
-        .sendMail({
-          to: user.email.value,
-          subject: 'We have a new Artwork Version created for you!',
-          template: 'subject-version-created',
-          context: {
-            name: user.name,
-            homeworkName: createdHomework.title,
-            creatorId: createdHomework.creatorId,
-            sclassId: createdHomework.sclassId,
-            subjectId: createdHomework.subjectId,
-
-            homeworkId: createdHomework._id,
-            baseUrl: this.configService.get<string>('app.uiUrl'),
-          },
-        })
-        .then(() => {
-          console.log('sent email');
-        })
-        .catch((e: any) => {
-          console.log('err sending email', e);
-        });
-    }
-
-    return createdHomework;
+    return await this.homeworksService.create(createHomeworkDTO);
   }
 
   @Delete()

@@ -17,7 +17,7 @@ export const HomeworkSchema = new Schema({
     type: FileSchema,
   },
 
-  creatorId: {
+  tutorId: {
     type: Schema.Types.ObjectId,
     required: [true, 'MISSING_FIELD_creatorId'],
   },

@@ -139,28 +139,6 @@ export class SclassesService {
   }
 
   async create(sclass: { [key: string]: any }) {
-    if (!sclass.name || !sclass.tutorId) {
-      throw new BadRequestException({
-        err: ErrorConstant.MISSING_FIELD,
-        msgVars: { field: 'name  or offsetPrinterId' },
-      });
-    }
-
-    let foundSclass = await this.sclassModel
-      .findOne({
-        name: sclass.name,
-        tutorId: sclass.tutorId,
-        studentId: sclass.studentId,
-      })
-      .exec();
-
-    if (foundSclass) {
-      throw new BadRequestException({
-        err: ErrorConstant.DUPLICATE_ENTITY,
-        msgVars: { entity: sclass },
-      });
-    }
-
     let newSclass = new this.sclassModel(sclass);
 
     let validationErrors = newSclass.validateSync();
@@ -177,9 +155,9 @@ export class SclassesService {
       return await newSclass.save();
     } catch (e) {
       throw new BadRequestException({
-        error: ErrorConstant.DUPLICATE_ENTITY,
+        error: ErrorConstant.UNKNOWN_ERROR,
         msgVars: {
-          entity: 'Sclass',
+          message: e,
         },
       });
     }

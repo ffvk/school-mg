@@ -5,7 +5,7 @@ export class CreateSubjectDTO {
   tutorId: string;
 
   @IsMongoId()
-  classId: string;
+  sclassId: string;
 
   @IsString()
   @IsNotEmpty()

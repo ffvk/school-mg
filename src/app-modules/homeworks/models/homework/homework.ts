@@ -7,7 +7,7 @@ export class Homework extends Document {
 
   file?: File;
 
-  creatorId: string;
+  tutorId: string;
 
   sclassId: string;
 

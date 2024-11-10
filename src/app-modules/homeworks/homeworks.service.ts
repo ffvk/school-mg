@@ -32,8 +32,8 @@ export class HomeworksService {
       readQuery.subjectId = query.subjectId;
     }
 
-    if (query.creatorId) {
-      readQuery.creatorId = query.creatorId;
+    if (query.tutorId) {
+      readQuery.tutorId = query.tutorId;
     }
 
     if (query.title) {
@@ -157,28 +157,6 @@ export class HomeworksService {
   }
 
   async create(homework: { [key: string]: any }) {
-    if (!homework.title || !homework.sclassId || !homework.subjectId) {
-      throw new BadRequestException({
-        error: ErrorConstant.MISSING_FIELD,
-        msgVars: { field: 'sclassId or subjectId or title' },
-      });
-    }
-
-    let foundHomework = await this.homeworkModel
-      .findOne({
-        title: homework.title,
-        sclassId: homework.sclassId,
-        subjectId: homework.subjectId,
-      })
-      .exec();
-
-    if (foundHomework) {
-      throw new BadRequestException({
-        err: ErrorConstant.DUPLICATE_ENTITY,
-        msgVars: { entity: homework },
-      });
-    }
-
     let newHomework = new this.homeworkModel(homework);
 
     let validationErrors = newHomework.validateSync();
@@ -227,8 +205,8 @@ export class HomeworksService {
       foundHomework.subjectId = homework.subjectId;
     }
 
-    if (homework.creatorId) {
-      foundHomework.creatorId = homework.creatorId;
+    if (homework.tutorId) {
+      foundHomework.tutorId = homework.tutorId;
     }
 
     if (homework.title) {

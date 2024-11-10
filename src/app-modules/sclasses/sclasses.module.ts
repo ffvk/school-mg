@@ -15,8 +15,8 @@ import { UsersModule } from '../users/users.module';
       MongooseModule.forFeatureAsync([
         {
           name: 'Sclasses', // name of db table
-          imports: [SubjectsModule],
-          useFactory: async (subjectsService: SubjectsService) => {
+          // imports: [SubjectsModule],
+          useFactory: () => {
             SclassSchema.index(
               { tutorId: 1, studentId: 1, className: 1 },
               { unique: true },
@@ -41,29 +41,29 @@ import { UsersModule } from '../users/users.module';
               },
             });
 
-            SclassSchema.set('toObject', {
-              virtuals: true,
-            });
-            // setup virtuals
-            SclassSchema.virtual('subjects', {
-              ref: 'Subjects',
-              localField: '_id',
-              foreignField: 'sclassId',
-              justOne: false,
-            });
+            //   SclassSchema.set('toObject', {
+            //     virtuals: true,
+            //   });
+            //   // setup virtuals
+            //   SclassSchema.virtual('subjects', {
+            //     ref: 'Subjects',
+            //     localField: '_id',
+            //     foreignField: 'sclassId',
+            //     justOne: false,
+            //   });
 
-            SclassSchema.post<Sclass>('findOneAndRemove', async (sclass) => {
-              await subjectsService.deleteBy({
-                sclassId: sclass['_id'],
-              });
+            //   SclassSchema.post<Sclass>('findOneAndRemove', async (sclass) => {
+            //     await subjectsService.deleteBy({
+            //       sclassId: sclass['_id'],
+            //     });
 
-              return null;
-            });
+            //     return null;
+            //   });
 
             return SclassSchema;
           },
 
-          inject: [forwardRef(() => SubjectsService)],
+          // inject: [forwardRef(() => SubjectsService)],
         },
       ]),
     ),

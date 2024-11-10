@@ -14,7 +14,7 @@ export const SubjectSchema = new Schema({
     ref: 'Sclasses',
   },
 
-  studentId: {
+  tutorId: {
     type: Schema.Types.ObjectId,
     required: [true, 'MISSING_FIELD__studentId'],
     ref: 'Users',

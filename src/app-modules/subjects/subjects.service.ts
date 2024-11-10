@@ -65,8 +65,8 @@ export class SubjectsService {
 
     let subjects = await this.subjectModel
       .find(readQuery)
-      .populate('virtualIdsField')
-      .populate('idsField')
+      .populate('homeworkId')
+      .populate('sclassId')
       .select(query.fields)
       .limit(limit)
       .skip(skip)
@@ -83,26 +83,6 @@ export class SubjectsService {
   }
 
   async create(subject: { [key: string]: any }) {
-    if (!subject.subjectName) {
-      throw new BadRequestException({
-        err: ErrorConstant.MISSING_FIELD,
-        msgVars: { field: 'subjectName' },
-      });
-    }
-
-    let foundSubject = await this.subjectModel
-      .findOne({
-        field1: subject.className,
-      })
-      .exec();
-
-    if (foundSubject) {
-      throw new BadRequestException({
-        err: ErrorConstant.DUPLICATE_ENTITY,
-        msgVars: { entity: subject },
-      });
-    }
-
     let newSubject = new this.subjectModel(subject);
 
     let validationErrors = newSubject.validateSync();

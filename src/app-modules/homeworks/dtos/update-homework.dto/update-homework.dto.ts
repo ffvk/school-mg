@@ -11,7 +11,7 @@ export class UpdateHomeworkDTO {
   subjectId: string;
 
   @IsMongoId()
-  creatorId: string;
+  tutorId: string;
 
   @IsString()
   @IsNotEmpty()

@@ -5,63 +5,74 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SharedModule } from 'src/shared/shared.module';
 import { SubjectSchema } from './schemas/subject.schema/subject.schema';
 import { HomeworksModule } from '../homeworks/homeworks.module';
+import { UsersModule } from '../users/users.module';
+import { HomeworksService } from '../homeworks/homeworks.service';
+import { Subject } from './models/subject/subject';
+import { SclassesModule } from '../sclasses/sclasses.module';
 
 @Module({
   imports: [
-    MongooseModule.forFeatureAsync([
-      {
-        name: 'Subjects', // name of db table
-        useFactory: () => {
-          // defining nested field index
-          SubjectSchema.index({ 'field1.nestedField': 1 }, { unique: true });
-          // defining single field index
-          SubjectSchema.index({ field2: 1 }, { unique: true });
-          // defining multiple fields composite key index
-          SubjectSchema.index({ field3: 1, field4: 1 }, { unique: true });
-          // defining text indexes
-          SubjectSchema.index({ searchField1: 'text', searchField2: 'text' });
+    forwardRef(() =>
+      MongooseModule.forFeatureAsync([
+        {
+          name: 'Subjects', // name of db table
+          // imports: [HomeworksModule],
+          useFactory: () => {
+            SubjectSchema.index(
+              { sclassId: 1, studentId: 1, subjectName: 1 },
+              { unique: true },
+            );
 
-          SubjectSchema.set('toJSON', {
-            virtuals: true,
-            getters: true,
-            transform: (doc, ret, options) => {
-              ret.subjectId = ret._id;
-              delete ret._id;
-              delete ret.id;
-              delete ret.__v;
-              delete ret.someField;
-              // change the data from database if needed before
-              // returning to user
+            // defining text indexes
+            SubjectSchema.index({
+              className: 'text',
+            });
 
-              if (ret.emails) {
-                for (let i = 0; i < ret.emails.length; i++) {
-                  if (ret.emails[i].otp) {
-                    delete ret.emails[i].otp;
-                  }
-                }
-              }
-            },
-          });
+            SubjectSchema.set('toJSON', {
+              virtuals: true,
+              getters: true,
+              transform: (doc, ret, options) => {
+                ret.subjectId = ret._id;
+                delete ret._id;
+                delete ret.id;
+                delete ret.__v;
+                // delete ret.someField;
+                // change the data from database if needed before
+                // returning to user
+              },
+            });
 
-          SubjectSchema.set('toObject', {
-            virtuals: true,
-          });
-          // setup virtuals
-          SubjectSchema.virtual('virtualFields', {
-            ref: 'RefDbName', // reference db
-            localField: '_id', // leave it as is
-            foreignField: 'subjectId', // change subject to module name
-            justOne: false, // leave it as is
-          });
+            // SubjectSchema.set('toObject', {
+            //   virtuals: true,
+            // });
+            // // setup virtuals
+            // SubjectSchema.virtual('subjects', {
+            //   ref: 'Subjects',
+            //   localField: '_id',
+            //   foreignField: 'sclassId',
+            //   justOne: false,
+            // });
 
-          return SubjectSchema;
+            // SubjectSchema.post<Subject>('findOneAndRemove', async (sclass) => {
+            //   await homeworksService.deleteBy({
+            //     sclassId: sclass['_id'],
+            //   });
+
+            //   return null;
+            // });
+
+            return SubjectSchema;
+          },
+
+          // inject: [forwardRef(() => SubjectsService)],
         },
-      },
-    ]),
+      ]),
+    ),
 
     // include the dependency modules here
     forwardRef(() => SharedModule),
-    forwardRef(() => HomeworksModule),
+    forwardRef(() => UsersModule),
+    forwardRef(() => SclassesModule),
   ],
   controllers: [SubjectsController],
   providers: [SubjectsService],
