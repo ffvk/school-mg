@@ -1,7 +1,7 @@
-import { GetSclassesDto } from './get-sclasses.dto';
+import { GetSclassesDTO } from './get-sclasses.dto';
 
-describe('GetSclassesDto', () => {
+describe('GetSclassesDTO', () => {
   it('should be defined', () => {
-    expect(new GetSclassesDto()).toBeDefined();
+    expect(new GetSclassesDTO()).toBeDefined();
   });
 });

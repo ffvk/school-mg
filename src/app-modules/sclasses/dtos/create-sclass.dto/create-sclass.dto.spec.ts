@@ -1,7 +1,7 @@
-import { CreateSclassDto } from './create-sclass.dto';
+import { CreateSclassDTO } from './create-sclass.dto';
 
-describe('CreateSclassDto', () => {
+describe('CreateSclassDTO', () => {
   it('should be defined', () => {
-    expect(new CreateSclassDto()).toBeDefined();
+    expect(new CreateSclassDTO()).toBeDefined();
   });
 });

@@ -1,7 +1,7 @@
-import { UpdateSclassDto } from './update-sclass.dto';
+import { UpdateSclassDTO } from './update-sclass.dto';
 
-describe('UpdateSclassDto', () => {
+describe('UpdateSclassDTO', () => {
   it('should be defined', () => {
-    expect(new UpdateSclassDto()).toBeDefined();
+    expect(new UpdateSclassDTO()).toBeDefined();
   });
 });
