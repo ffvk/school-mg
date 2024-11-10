@@ -25,12 +25,9 @@ export class GetSclassesDTO {
   studentId: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   className: string;
 
-  @IsOptional()
-  @IsString()
-  supportingFilesDielineType: string;
   @IsOptional()
   @IsNumber()
   @Transform(({ value }) => parseInt(value))

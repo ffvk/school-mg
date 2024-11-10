@@ -10,11 +10,11 @@ import {
 } from '@nestjs/common';
 import { RestrictSclassesGuard } from 'src/shared/guards/restrictors/restrict-sclasses/restrict-sclasses.guard';
 import { SclassIdGuard } from 'src/shared/guards/validators/sclass-id/sclass-id.guard';
-import { CreateSclassDTO } from './dtos/create-sclass.dto/create-sclass.dto';
 import { DeleteSclassDTO } from './dtos/delete-sclass.dto/delete-sclass.dto';
 import { GetSclassesDTO } from './dtos/get-sclasses.dto/get-sclasses.dto';
 import { UpdateSclassDTO } from './dtos/update-sclass.dto/update-sclass.dto';
 import { SclassesService } from './sclasses.service';
+import { CreateSclassDTO } from './dtos/create-sclass.dto/create-sclass.dto';
 
 @Controller('sclasses')
 export class SclassesController {
@@ -27,7 +27,6 @@ export class SclassesController {
   }
 
   @Post()
-  @UseGuards()
   async createSclass(@Body() createSclassDTO: CreateSclassDTO) {
     return await this.sclassesService.create(createSclassDTO);
   }

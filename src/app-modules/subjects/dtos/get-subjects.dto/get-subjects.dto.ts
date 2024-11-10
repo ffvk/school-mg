@@ -25,7 +25,7 @@ export class GetSubjectsDTO {
   tutorId: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   subjectName: string;
 
   @IsOptional()

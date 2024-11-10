@@ -65,7 +65,7 @@ export class SubjectsService {
 
     let subjects = await this.subjectModel
       .find(readQuery)
-      .populate('homeworkId')
+      // .populate('homeworkId')
       .populate('sclassId')
       .select(query.fields)
       .limit(limit)

@@ -55,15 +55,6 @@ export class GetHomeworkDTO {
   fileType: string;
 
   @IsOptional()
-  @IsBoolean()
-  @Transform(({ value }) => String(value).toLowerCase() === 'true')
-  deleted: boolean;
-
-  @IsOptional()
-  @IsString()
-  reason: string;
-
-  @IsOptional()
   @IsNumber()
   @Transform(({ value }) => parseInt(value))
   limit: number;

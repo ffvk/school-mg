@@ -48,14 +48,14 @@ export class SclassesService {
       readQuery['$or'] = query['$or'];
     }
 
-    readQuery.deleted = false;
-    if (String(query.deleted) === 'true' || String(query.deleted) === 'false') {
-      readQuery.deleted = String(query.deleted) === 'true';
-    }
+    // readQuery.deleted = false;
+    // if (String(query.deleted) === 'true' || String(query.deleted) === 'false') {
+    //   readQuery.deleted = String(query.deleted) === 'true';
+    // }
 
-    if (String(query.deleted) === 'all') {
-      delete readQuery.deleted;
-    }
+    // if (String(query.deleted) === 'all') {
+    //   delete readQuery.deleted;
+    // }
 
     // if (!isNaN((query.deadline = parseInt(query.deadline)))) {
     //   readQuery.deadline = query.deadline;
@@ -110,18 +110,18 @@ export class SclassesService {
           .reduce((a: any, b: any) => ((a[b] = true), a), {})
       : {};
 
-    let sclasss = await this.sclassModel
+    let sclasses = await this.sclassModel
       .find(readQuery)
-      .populate('subjects', {
-        match: { deleted: false },
-      })
-      .populate({
-        path: 'subjects',
-        populate: {
-          path: 'homeworks',
-          model: 'Homework',
-        },
-      })
+      // .populate('subjects', {
+      //   match: { deleted: false },
+      // })
+      // .populate({
+      //   path: 'subjects',
+      //   populate: {
+      //     path: 'homeworks',
+      //     model: 'Homework',
+      //   },
+      // })
       .select(query.fields)
       .limit(limit)
       .skip(skip)
@@ -133,8 +133,8 @@ export class SclassesService {
 
     return {
       totalCount,
-      currentCount: sclasss.length,
-      sclasss: (sclasss.length && sclasss) || null,
+      currentCount: sclasses.length,
+      sclasses: (sclasses.length && sclasses) || null,
     };
   }
 
@@ -214,11 +214,11 @@ export class SclassesService {
     query: { [key: string]: any },
     update: { [key: string]: any },
   ) {
-    const sclasss = await this.sclassModel.find(query).exec();
+    const sclasses = await this.sclassModel.find(query).exec();
 
     let updatedSclasses = [];
 
-    for (const sclass of sclasss) {
+    for (const sclass of sclasses) {
       updatedSclasses.push(
         await this.update({ sclassId: sclass._id, ...sclass, ...update }),
       );
@@ -232,9 +232,9 @@ export class SclassesService {
   }
 
   async deleteBy(query: { [key: string]: any }) {
-    const sclasss = await this.sclassModel.find(query).exec();
+    const sclasses = await this.sclassModel.find(query).exec();
 
-    for (const sclass of sclasss) {
+    for (const sclass of sclasses) {
       await this.delete(String(sclass._id));
     }
 

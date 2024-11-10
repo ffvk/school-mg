@@ -36,7 +36,6 @@ export class HomeworksController {
   }
 
   @Post()
-  @UseGuards(SubjectIdGuard)
   async createHomework(@Body() createHomeworkDTO: CreateHomeworkDTO) {
     return await this.homeworksService.create(createHomeworkDTO);
   }

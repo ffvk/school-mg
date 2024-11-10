@@ -63,7 +63,7 @@ export class SclassIdGuard implements CanActivate {
       req['storage'] = {};
     }
 
-    req['storage']['sclass'] = foundSclass.sclasss[0];
+    req['storage']['sclass'] = foundSclass.sclasses[0];
     return true;
   }
 }
