@@ -4,14 +4,21 @@ export class Roles {
   public static readonly ADMIN: IRole = {
     role: 'ADMIN',
     description: 'ADMIN users',
-    childRoles: ['ADMIN', 'CUSTOMER'],
+    childRoles: ['ADMIN', 'ROOT', 'STUDENT'],
     visible: true,
   };
 
-  public static readonly CUSTOMER: IRole = {
-    role: 'CUSTOMER',
-    description: 'CUSTOMER users',
-    childRoles: ['CUSTOMER'],
+  public static readonly ROOT: IRole = {
+    role: 'ROOT',
+    description: 'ROOT users',
+    childRoles: ['ROOT', 'STUDENT'],
+    visible: true,
+  };
+
+  public static readonly STUDENT: IRole = {
+    role: 'STUDENT',
+    description: 'STUDENT users',
+    childRoles: ['STUDENT'],
     visible: true,
   };
 }

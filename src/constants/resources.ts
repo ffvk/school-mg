@@ -26,8 +26,12 @@ export class ResourceConstant {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
@@ -53,8 +57,12 @@ export class ResourceConstant {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
@@ -84,8 +92,12 @@ export class ResourceConstant {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
@@ -112,8 +124,12 @@ export class ResourceConstant {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
@@ -141,8 +157,12 @@ export class ResourceConstant {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
@@ -169,8 +189,12 @@ export class ResourceConstant {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
@@ -197,9 +221,9 @@ export class ResourceConstant {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
-        restriction: 'userId',
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
       },
     },
   };
@@ -224,87 +248,99 @@ export class ResourceConstant {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
   };
 
   //*****************************************************************//
-  //************************* ORDERS ***************************//
+  //************************* SUBJETECTS ***************************//
   //*****************************************************************//
 
   /**
-   * @description Resource that captures the request to get (*) orders
+   * @description Resource that captures the request to get (*) subjects
    * @constant
-   * @type {Object} GET_ORDERS
+   * @type {Object} GET_SUBJETECTS
    * @default
    */
-  public static readonly GET_ORDERS: IResource = {
-    action: 'GET_ORDERS',
-    resource: 'ORDERS',
+  public static readonly GET_SUBJETECTS: IResource = {
+    action: 'GET_SUBJETECTS',
+    resource: 'SUBJETECTS',
     verb: 'GET',
-    endpoint: '/orders',
+    endpoint: '/subjects',
     signWith: 'TOKEN',
     type: 'READ',
-    name: 'List All Orders',
-    description: 'Allows retrieving the list of all orders',
+    name: 'List All Subjects',
+    description: 'Allows retrieving the list of all subjects',
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
   };
 
   /**
-   * @description Resource that captures the request to add a new order by
+   * @description Resource that captures the request to add a new subject by
    * creating a new entry in db
    * @constant
-   * @type {Object} CREATE_ORDERS
+   * @type {Object} CREATE_SUBJETECTS
    * @default
    */
-  public static readonly CREATE_ORDERS: IResource = {
-    action: 'CREATE_ORDERS',
-    resource: 'ORDERS',
+  public static readonly CREATE_SUBJETECTS: IResource = {
+    action: 'CREATE_SUBJETECTS',
+    resource: 'SUBJETECTS',
     verb: 'POST',
-    endpoint: '/orders',
+    endpoint: '/subjects',
     signWith: 'TOKEN',
     type: 'WRITE',
-    name: 'Add a new Order',
-    description: 'Allows to add a new order',
+    name: 'Add a new Subject',
+    description: 'Allows to add a new subject',
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
   };
 
   /**
-   * @description Resource that captures the request to update a order
+   * @description Resource that captures the request to update a subject
    * @constant
-   * @type {Object} UPDATE_ORDERS
+   * @type {Object} UPDATE_SUBJETECTS
    * @default
    */
-  public static readonly UPDATE_ORDERS: IResource = {
-    action: 'UPDATE_ORDERS',
-    resource: 'ORDERS',
+  public static readonly UPDATE_SUBJETECTS: IResource = {
+    action: 'UPDATE_SUBJETECTS',
+    resource: 'SUBJETECTS',
     verb: 'PUT',
-    endpoint: '/orders',
+    endpoint: '/subjects',
     signWith: 'TOKEN',
     type: 'WRITE',
-    name: 'Update an existing Order',
-    description: 'Allows to update an existing order',
+    name: 'Update an existing Subject',
+    description: 'Allows to update an existing subject',
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
@@ -314,20 +350,20 @@ export class ResourceConstant {
   };
 
   /**
-   * @description Resource that captures the request to delete a order
+   * @description Resource that captures the request to delete a subject
    * @constant
-   * @type {Object} DELETE_ORDERS
+   * @type {Object} DELETE_SUBJETECTS
    * @default
    */
-  public static readonly DELETE_ORDERS: IResource = {
-    action: 'DELETE_ORDERS',
-    resource: 'ORDERS',
+  public static readonly DELETE_SUBJETECTS: IResource = {
+    action: 'DELETE_SUBJETECTS',
+    resource: 'SUBJETECTS',
     verb: 'DELETE',
-    endpoint: '/orders',
+    endpoint: '/subjects',
     signWith: 'TOKEN',
     type: 'WRITE',
-    name: 'Delete an existing Order',
-    description: 'Allows to delete an existing order',
+    name: 'Delete an existing Subject',
+    description: 'Allows to delete an existing subject',
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
@@ -337,101 +373,119 @@ export class ResourceConstant {
   };
 
   //*****************************************************************//
-  //************************* PRODUCTS ***************************//
+  //************************* SCLASSES ***************************//
   //*****************************************************************//
 
   /**
-   * @description Resource that captures the request to get (*) products
+   * @description Resource that captures the request to get (*) sclasses
    * @constant
-   * @type {Object} GET_PRODUCTS
+   * @type {Object} GET_SCLASSES
    * @default
    */
-  public static readonly GET_PRODUCTS: IResource = {
-    action: 'GET_PRODUCTS',
-    resource: 'PRODUCTS',
+  public static readonly GET_SCLASSES: IResource = {
+    action: 'GET_SCLASSES',
+    resource: 'SCLASSES',
     verb: 'GET',
-    endpoint: '/products',
+    endpoint: '/sclasses',
     signWith: 'TOKEN',
     type: 'READ',
-    name: 'List All Products',
-    description: 'Allows retrieving the list of all products',
+    name: 'List All Sclasses',
+    description: 'Allows retrieving the list of all sclasses',
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
         restriction: '',
       },
-      CUSTOMER: {
-        role: Roles.CUSTOMER.role,
+      ROOT: {
+        role: Roles.ROOT.role,
+        restriction: '',
+      },
+      STUDENT: {
+        role: Roles.STUDENT.role,
         restriction: '',
       },
     },
   };
 
   /**
-   * @description Resource that captures the request to add a new order by
+   * @description Resource that captures the request to add a new sclass by
    * creating a new entry in db
    * @constant
-   * @type {Object} CREATE_PRODUCTS
+   * @type {Object} CREATE_SCLASSES
    * @default
    */
-  public static readonly CREATE_PRODUCTS: IResource = {
-    action: 'CREATE_PRODUCTS',
-    resource: 'PRODUCTS',
+  public static readonly CREATE_SCLASSES: IResource = {
+    action: 'CREATE_SCLASSES',
+    resource: 'SCLASSES',
     verb: 'POST',
-    endpoint: '/products',
+    endpoint: '/sclasses',
     signWith: 'TOKEN',
     type: 'WRITE',
-    name: 'Add a new Product',
-    description: 'Allows to add a new product',
+    name: 'Add a new Sclass',
+    description: 'Allows to add a new sclass',
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
+        restriction: '',
+      },
+
+      ROOT: {
+        role: Roles.ROOT.role,
         restriction: '',
       },
     },
   };
 
   /**
-   * @description Resource that captures the request to update a product
+   * @description Resource that captures the request to update a sclass
    * @constant
-   * @type {Object} UPDATE_PRODUCTS
+   * @type {Object} UPDATE_SCLASSES
    * @default
    */
-  public static readonly UPDATE_PRODUCTS: IResource = {
-    action: 'UPDATE_PRODUCTS',
-    resource: 'PRODUCTS',
+  public static readonly UPDATE_SCLASSES: IResource = {
+    action: 'UPDATE_SCLASSES',
+    resource: 'SCLASSES',
     verb: 'PUT',
-    endpoint: '/products',
+    endpoint: '/sclasses',
     signWith: 'TOKEN',
     type: 'WRITE',
-    name: 'Update an existing Product',
-    description: 'Allows to update an existing product',
+    name: 'Update an existing Sclass',
+    description: 'Allows to update an existing sclass',
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
+        restriction: '',
+      },
+      ROOT: {
+        role: Roles.ROOT.role,
         restriction: '',
       },
     },
   };
 
   /**
-   * @description Resource that captures the request to delete a product
+   * @description Resource that captures the request to delete a sclass
    * @constant
-   * @type {Object} DELETE_PRODUCTS
+   * @type {Object} DELETE_SCLASSES
    * @default
    */
-  public static readonly DELETE_PRODUCTS: IResource = {
-    action: 'DELETE_PRODUCTS',
-    resource: 'PRODUCTS',
+  public static readonly DELETE_SCLASSES: IResource = {
+    action: 'DELETE_SCLASSES',
+    resource: 'SCLASSES',
     verb: 'DELETE',
-    endpoint: '/products',
+    endpoint: '/sclasses',
     signWith: 'TOKEN',
     type: 'WRITE',
-    name: 'Delete an existing Product',
-    description: 'Allows to delete an existing product',
+    name: 'Delete an existing Sclass',
+    description: 'Allows to delete an existing sclass',
     roles: {
       ADMIN: {
         role: Roles.ADMIN.role,
+        restriction: '',
+      },
+
+      ROOT: {
+        role: Roles.ROOT.role,
         restriction: '',
       },
     },
