@@ -9,7 +9,7 @@ import { ErrorConstant } from 'src/constants/error';
 import { TicketModel } from 'src/shared/models/ticket-model/ticket-model';
 
 @Injectable()
-export class RestrictSubjectsGuard implements CanActivate {
+export class RestrictHomeworksGuard implements CanActivate {
   canActivate(context: ExecutionContext) {
     const ctx = context.switchToHttp();
     let req = ctx.getRequest<Request>();

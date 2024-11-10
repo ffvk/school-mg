@@ -4,6 +4,7 @@ import { forwardRef, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SharedModule } from 'src/shared/shared.module';
 import { SubjectSchema } from './schemas/subject.schema/subject.schema';
+import { HomeworksModule } from '../homeworks/homeworks.module';
 
 @Module({
   imports: [
@@ -60,6 +61,7 @@ import { SubjectSchema } from './schemas/subject.schema/subject.schema';
 
     // include the dependency modules here
     forwardRef(() => SharedModule),
+    forwardRef(() => HomeworksModule),
   ],
   controllers: [SubjectsController],
   providers: [SubjectsService],
