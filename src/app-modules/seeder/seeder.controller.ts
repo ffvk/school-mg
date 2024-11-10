@@ -23,6 +23,18 @@ export class SeederController {
       password: 'rakesh',
       role: 'ADMIN',
     });
+
+    await this.usersService.create({
+      name: 'Dhriti Das',
+      email: { value: 'roydhriti240@gmail.com' },
+      phone: {
+        countryCode: '+91',
+        number: '7076480257',
+      },
+      gender: 'MALE',
+      password: 'dhriti',
+      role: 'ADMIN',
+    });
   }
 
   @Put('permissions')

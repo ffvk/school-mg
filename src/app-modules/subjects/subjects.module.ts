@@ -19,7 +19,7 @@ import { SclassesModule } from '../sclasses/sclasses.module';
           // imports: [HomeworksModule],
           useFactory: () => {
             SubjectSchema.index(
-              { sclassId: 1, studentId: 1, subjectName: 1 },
+              { sclassId: 1, tutorId: 1, subjectName: 1 },
               { unique: true },
             );
 

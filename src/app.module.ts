@@ -2,10 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
+import { HomeworksModule } from './app-modules/homeworks/homeworks.module';
 import { OrdersModule } from './app-modules/orders/orders.module';
 import { PermissionsModule } from './app-modules/permissions/permissions.module';
 import { ProductsModule } from './app-modules/products/products.module';
+import { SclassesModule } from './app-modules/sclasses/sclasses.module';
 import { SeederModule } from './app-modules/seeder/seeder.module';
+import { SubjectsModule } from './app-modules/subjects/subjects.module';
 import { TokensModule } from './app-modules/tokens/tokens.module';
 import { UsersModule } from './app-modules/users/users.module';
 import { AppController } from './app.controller';
@@ -17,11 +20,6 @@ import { HttpExceptionFilter } from './shared/filters/http-exception/http-except
 import { PermissionGuard } from './shared/guards/permission/permission.guard';
 import { TokenGuard } from './shared/guards/token/token.guard';
 import { SharedModule } from './shared/shared.module';
-import { SubjectsModule } from './app-modules/subjects/subjects.module';
-import { SclassesModule } from './app-modules/sclasses/sclasses.module';
-import { HomeworksModule } from './app-modules/homeworks/homeworks.module';
-import { MailerModule } from '@nestjs-modules/mailer';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 @Module({
   imports: [
@@ -43,29 +41,6 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
       inject: [ConfigService],
     }),
 
-    MailerModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        transport:
-          'smtps://' +
-          configService.get<string>('app.email.user') +
-          ':' +
-          configService.get<string>('app.email.pass') +
-          '@smtp.gmail.com',
-        defaults: {
-          from: configService.get<string>('app.email.from'),
-        },
-        template: {
-          dir: __dirname + '/templates',
-          adapter: new HandlebarsAdapter(),
-          options: {
-            strict: true,
-          },
-        },
-      }),
-      inject: [ConfigService],
-    }),
-
     SharedModule,
     TokensModule,
     PermissionsModule,
@@ -73,9 +48,9 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
     SeederModule,
     ProductsModule,
     OrdersModule,
+    SclassesModule,
     SubjectsModule,
     HomeworksModule,
-    SclassesModule,
   ],
   controllers: [AppController],
   providers: [

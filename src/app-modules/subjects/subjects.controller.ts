@@ -8,19 +8,20 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { SubjectsService } from './subjects.service';
-import { GetSubjectsDTO } from './dtos/get-subjects.dto/get-subjects.dto';
-import { CreateSubjectDTO } from './dtos/create-subject.dto/create-subject.dto';
 import { SubjectIdGuard } from 'src/shared/guards/validators/subject-id/subject-id.guard';
-import { UpdateSubjectDTO } from './dtos/update-subject.dto/update-subject.dto';
 import { ParseMongoIdPipe } from 'src/shared/pipes/parse-mongo-id/parse-mongo-id.pipe';
+import { CreateSubjectDTO } from './dtos/create-subject.dto/create-subject.dto';
+import { GetSubjectsDTO } from './dtos/get-subjects.dto/get-subjects.dto';
+import { UpdateSubjectDTO } from './dtos/update-subject.dto/update-subject.dto';
+import { SubjectsService } from './subjects.service';
+import { RestrictSubjectsGuard } from 'src/shared/guards/restrictors/restrict-subjects/restrict-subjects.guard';
 
 @Controller('subjects')
 export class SubjectsController {
   constructor(private readonly subjectsService: SubjectsService) {}
 
   @Get()
-  @UseGuards()
+  @UseGuards(RestrictSubjectsGuard)
   async getSubjects(@Query() getSubjectsDTO: GetSubjectsDTO) {
     return await this.subjectsService.get(getSubjectsDTO);
   }

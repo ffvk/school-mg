@@ -9,38 +9,39 @@ import { HomeworkSchema } from './schemas/homework.schema/homework.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeatureAsync([
-      {
-        name: 'Homeworks', // name of db table
-        useFactory: () => {
-          HomeworkSchema.index(
-            { title: 1, sclassId: 1, subjectId: 1 },
-            { unique: true },
-          );
+    forwardRef(() =>
+      MongooseModule.forFeatureAsync([
+        {
+          name: 'Homeworks', // name of db table
+          // imports: [HomeworksModule],
+          useFactory: () => {
+            HomeworkSchema.index(
+              { sclassId: 1, tutorId: 1, subjectId: 1, title: 1 },
+              { unique: true },
+            );
 
-          // defining text indexes
-          HomeworkSchema.index({
-            title: 'text',
-            description: 'text',
-          });
+            // defining text indexes
+            HomeworkSchema.index({
+              className: 'text',
+              description: 'text',
+            });
 
-          HomeworkSchema.set('toJSON', {
-            getters: true,
-            transform: (doc, ret, options) => {
-              ret.homeworkId = ret._id;
-              delete ret._id;
-              delete ret.id;
-              delete ret.__v;
-              // delete ret.someField;
-              // change the data from database if needed before
-              // returning to user
-            },
-          });
+            HomeworkSchema.set('toJSON', {
+              virtuals: true,
+              getters: true,
+              transform: (doc, ret, options) => {
+                ret.homeworkId = ret._id;
+                delete ret._id;
+                delete ret.id;
+                delete ret.__v;
+              },
+            });
 
-          return HomeworkSchema;
+            return HomeworkSchema;
+          },
         },
-      },
-    ]),
+      ]),
+    ),
 
     // include the dependency modules here
     forwardRef(() => SubjectsModule),

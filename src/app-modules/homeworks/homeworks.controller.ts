@@ -5,6 +5,7 @@ import {
   Delete,
   Get,
   Post,
+  Put,
   Query,
   UploadedFiles,
   UseGuards,
@@ -14,13 +15,13 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { ErrorConstant } from 'src/constants/error';
 import { RestrictHomeworksGuard } from 'src/shared/guards/restrictors/restrict-homeworks/restrict-homeworks.guard';
 import { HomeworkIdGuard } from 'src/shared/guards/validators/homework-id/homework-id.guard';
-import { SubjectIdGuard } from 'src/shared/guards/validators/subject-id/subject-id.guard';
 import { S3Service } from 'src/shared/helpers/s3/s3.service';
 import { ParseMongoIdPipe } from 'src/shared/pipes/parse-mongo-id/parse-mongo-id.pipe';
 import { CreateHomeworkDTO } from './dtos/create-homework.dto/create-homework.dto';
 import { DeleteHomeworkDTO } from './dtos/delete-homework.dto/delete-homework.dto';
 import { GetHomeworkDTO } from './dtos/get-homework.dto/get-homework.dto';
 import { HomeworksService } from './homeworks.service';
+import { UpdateHomeworkDTO } from './dtos/update-homework.dto/update-homework.dto';
 
 @Controller('homeworks')
 export class HomeworksController {
@@ -40,15 +41,15 @@ export class HomeworksController {
     return await this.homeworksService.create(createHomeworkDTO);
   }
 
-  @Delete()
+  @Put()
   @UseGuards(HomeworkIdGuard)
-  async deleteHomework(@Body() deleteHomeworkDTO: DeleteHomeworkDTO) {
-    return await this.homeworksService.update(deleteHomeworkDTO);
+  async updateHomework(@Body() updateHomeworkDTO: UpdateHomeworkDTO) {
+    return await this.homeworksService.update(updateHomeworkDTO);
   }
 
-  @Delete('permanent')
+  @Delete()
   @UseGuards(HomeworkIdGuard)
-  async deleteHomeworkPermanent(
+  async deleteHomework(
     @Body('homeworkId', ParseMongoIdPipe) homeworkId: string,
   ) {
     return await this.homeworksService.delete(homeworkId);

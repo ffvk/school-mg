@@ -1,3 +1,4 @@
+import { Document } from 'mongoose';
 import { File } from 'src/shared/models/file/file';
 
 export class Homework extends Document {

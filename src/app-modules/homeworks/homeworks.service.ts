@@ -142,7 +142,7 @@ export class HomeworksService {
       .limit(limit)
       .skip(skip)
       .sort(query.sort)
-      .populate('sclassId')
+      // .populate('sclassId')
       .populate('subjectId')
       .populate(query.populate || '') // this is experimental field
       .exec();
