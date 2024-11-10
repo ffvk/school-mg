@@ -1,3 +1,4 @@
+import { MailerService } from '@nestjs-modules/mailer';
 import {
   BadRequestException,
   Body,
@@ -5,27 +6,25 @@ import {
   Delete,
   Get,
   Post,
-  Put,
   Query,
   UploadedFiles,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { MailerService } from '@nestjs-modules/mailer';
+import { ConfigService } from '@nestjs/config';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { HomeworksService } from './homeworks.service';
-import { CreateHomeworkDTO } from './dtos/create-homework.dto/create-homework.dto';
-import { DeleteHomeworkDTO } from './dtos/delete-homework.dto/delete-homework.dto';
-import { ParseMongoIdPipe } from 'src/shared/pipes/parse-mongo-id/parse-mongo-id.pipe';
 import { ErrorConstant } from 'src/constants/error';
 import { RestrictHomeworksGuard } from 'src/shared/guards/restrictors/restrict-homeworks/restrict-homeworks.guard';
-import { GetHomeworkDTO } from './dtos/get-homework.dto/get-homework.dto';
-import { SubjectsService } from '../subjects/subjects.service';
+import { HomeworkIdGuard } from 'src/shared/guards/validators/homework-id/homework-id.guard';
 import { SubjectIdGuard } from 'src/shared/guards/validators/subject-id/subject-id.guard';
 import { S3Service } from 'src/shared/helpers/s3/s3.service';
+import { ParseMongoIdPipe } from 'src/shared/pipes/parse-mongo-id/parse-mongo-id.pipe';
+import { SubjectsService } from '../subjects/subjects.service';
 import { UsersService } from '../users/users.service';
-import { ConfigService } from '@nestjs/config';
-import { HomeworkIdGuard } from 'src/shared/guards/validators/homework-id/homework-id.guard';
+import { CreateHomeworkDTO } from './dtos/create-homework.dto/create-homework.dto';
+import { DeleteHomeworkDTO } from './dtos/delete-homework.dto/delete-homework.dto';
+import { GetHomeworkDTO } from './dtos/get-homework.dto/get-homework.dto';
+import { HomeworksService } from './homeworks.service';
 
 @Controller('homeworks')
 export class HomeworksController {
