@@ -2,7 +2,7 @@ import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class FileDTO {
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   url: string;
 
   @IsNumber()

@@ -9,8 +9,6 @@ export class CreateHomeworkDTO {
   @IsOptional()
   description?: string;
 
-  //   file?: File;
-
   @IsMongoId()
   tutorId: string;
 

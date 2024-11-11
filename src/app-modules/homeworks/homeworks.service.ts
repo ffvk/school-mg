@@ -72,23 +72,6 @@ export class HomeworksService {
       readQuery['file.type'] = query.fileType;
     }
 
-    if (query['$or']) {
-      readQuery['$or'] = query['$or'];
-    }
-
-    readQuery.deleted = false;
-    if (String(query.deleted) === 'true' || String(query.deleted) === 'false') {
-      readQuery.deleted = String(query.deleted) === 'true';
-    }
-
-    if (String(query.deleted) === 'all') {
-      delete readQuery.deleted;
-    }
-
-    if (query.reason) {
-      readQuery.reason = query.reason;
-    }
-
     if (query.search) {
       readQuery['$text'] = { $search: query.search };
     }
@@ -142,7 +125,8 @@ export class HomeworksService {
       .limit(limit)
       .skip(skip)
       .sort(query.sort)
-      // .populate('sclassId')
+      .populate('tutorId')
+      .populate('sclassId')
       .populate('subjectId')
       .populate(query.populate || '') // this is experimental field
       .exec();
