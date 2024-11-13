@@ -3,9 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HomeworksModule } from './app-modules/homeworks/homeworks.module';
-import { OrdersModule } from './app-modules/orders/orders.module';
 import { PermissionsModule } from './app-modules/permissions/permissions.module';
-import { ProductsModule } from './app-modules/products/products.module';
 import { SclassesModule } from './app-modules/sclasses/sclasses.module';
 import { SeederModule } from './app-modules/seeder/seeder.module';
 import { SubjectsModule } from './app-modules/subjects/subjects.module';
@@ -46,8 +44,7 @@ import { SharedModule } from './shared/shared.module';
     PermissionsModule,
     UsersModule,
     SeederModule,
-    ProductsModule,
-    OrdersModule,
+
     SclassesModule,
     SubjectsModule,
     HomeworksModule,
