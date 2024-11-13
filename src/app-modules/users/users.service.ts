@@ -98,7 +98,6 @@ export class UsersService {
     let users = await this.userModel
       .find(readQuery)
       .populate('tokens')
-      .populate('orders')
       .select(query.fields)
       .limit(limit)
       .sort(query.sort)
